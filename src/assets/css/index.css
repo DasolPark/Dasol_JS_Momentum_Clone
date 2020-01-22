@@ -197,6 +197,10 @@ textarea {
   font-size: 1.5rem;
 }
 
+:checked {
+  transform: scale(0.98);
+}
+
 /* 세 번째 화면 with To Do List */
 .todo__container {
   box-sizing: border-box;

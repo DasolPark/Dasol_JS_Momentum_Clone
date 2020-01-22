@@ -1,4 +1,5 @@
 const currentTime = document.querySelector('#js-current-time');
+const greetText = document.querySelector('#js-greet-text');
 
 function getCurrentTime() {
   const date = new Date();
@@ -8,6 +9,14 @@ function getCurrentTime() {
   currentTime.textContent = `${hour < 10 ? `0${hour}` : hour}:${
     minute < 10 ? `0${minute}` : minute
   }`;
+
+  if (hour < 12 && minute < 30) {
+    greetText.textContent = '좋은 아침이에요,';
+  } else if (hour < 17) {
+    greetText.textContent = '좋은 점심이에요,';
+  } else {
+    greetText.textContent = '좋은 저녁이에요,';
+  }
 }
 
 if (currentTime) {
