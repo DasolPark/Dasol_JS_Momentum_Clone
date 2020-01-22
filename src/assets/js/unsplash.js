@@ -6,6 +6,7 @@ fetch(
   `https://source.unsplash.com/collection/${collectionID}/${imageWidth}x${imageHeight}/`
 )
   .then(response => {
+    console.log(response.url);
     const jsBody = document.querySelector('body');
     jsBody.style = `background-image: url('${response.url}')`;
   })

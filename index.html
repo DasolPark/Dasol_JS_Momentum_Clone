@@ -8,18 +8,50 @@
     <link rel="stylesheet" href="src/assets/css/styles.css" />
   </head>
   <body>
-    <div class="index__container">
-      <header class="icon">😎</header>
-      <main class="whats-your-name">
-        <span class="whats-your-name__text">당신의 이름을 알고 싶어요!</span>
-        <form class="whats-your-name__form" id="js-name-form">
+    <header class="icon">😎</header>
+    <div class="container">
+      <div class="whats-your-name__container disappear">
+        <main class="whats-your-name">
+          <span class="whats-your-name__text">당신의 이름을 알고 싶어요!</span>
+          <form class="form" id="js-name-form">
+            <input type="text" class="input" id="js-name-input" />
+          </form>
+        </main>
+      </div>
+      <div class="greeting__container">
+        <main class="greeting">
+          <button class="button button--todo">To Do</button>
+          <div class="time">00:00</div>
+          <div class="greeting__greet-and-name">
+            <span class="greet">좋은 아침이에요,</span>
+            <span class="name">이름</span>
+            <span class="sir">님</span>
+          </div>
+          <div class="greeting__main-focus">
+            <span class="question">오늘 가장 중요한 일이 뭐에요?</span>
+            <form class="form">
+              <input type="text" class="input" />
+            </form>
+          </div>
+        </main>
+      </div>
+      <div class="todo__container">
+        <form class="form form--todo">
           <input
             type="text"
-            class="whats-your-name__input"
-            id="js-name-input"
+            class="input--todo"
+            placeholder="해야할 일을 적어주세요!"
           />
         </form>
-      </main>
+        <ul class="todo-lists">
+          <li class="todo">hdfgjgjfdgjfgjfgjh</li>
+          <li class="todo">hdfgjgjfdgjfgjfgjh</li>
+          <li class="todo">hdfgjgjfdgjfgjfgjh</li>
+          <li class="todo">hdfgjgjfdgjfgjfgjh</li>
+          <li class="todo">hdfgjgjfdgjfgjfgjh</li>
+          <li class="todo">hdfgjgjfdgjfgjfgjh</li>
+        </ul>
+      </div>
     </div>
     <script src="src/assets/js/unsplash.js"></script>
     <script src="src/assets/js/greeting.js"></script>
