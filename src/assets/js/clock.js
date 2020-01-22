@@ -11,11 +11,13 @@ function getCurrentTime() {
   }`;
 
   if (hour < 12 && minute < 30) {
-    greetText.textContent = '좋은 아침이에요,';
+    greetText.textContent = '좋은 아침이에요.';
   } else if (hour < 17) {
-    greetText.textContent = '좋은 점심이에요,';
+    greetText.textContent = '좋은 점심이에요.';
+  } else if (hour < 23) {
+    greetText.textContent = '좋은 저녁이에요.';
   } else {
-    greetText.textContent = '좋은 저녁이에요,';
+    greetText.textContent = '오늘도 고생 많았어요.';
   }
 }
 

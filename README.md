@@ -14,6 +14,6 @@
 - [x] Current Time(Hour, Minute)
 - [x] Today's main focus(Store, Load, Complete and Delete it the next day)
 - [x] Greetings(good morning, afternoon, evening)
-- [ ] To Do List (Store Local Storage)
+- [ ] To Do List (Store Local Storage, Complete, Delete)
 - [x] Weather API with open weather map
 - [x] Background Image API with unsplash
