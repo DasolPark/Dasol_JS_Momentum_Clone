@@ -10,7 +10,7 @@
   <body>
     <header class="icon">😎</header>
     <div class="container">
-      <div class="whats-your-name__container disappear">
+      <div class="whats-your-name__container" id="js-whats-your-container">
         <main class="whats-your-name">
           <span class="whats-your-name__text">당신의 이름을 알고 싶어요!</span>
           <form class="form" id="js-name-form">
@@ -18,13 +18,13 @@
           </form>
         </main>
       </div>
-      <div class="greeting__container">
+      <div class="greeting__container disappear" id="js-greeting-container">
         <main class="greeting">
           <button class="button button--todo">To Do</button>
-          <div class="time">00:00</div>
+          <div class="time" id="js-current-time">00:00</div>
           <div class="greeting__greet-and-name">
             <span class="greet">좋은 아침이에요,</span>
-            <span class="name">이름</span>
+            <span class="name" id="js-name"></span>
             <span class="sir">님</span>
           </div>
           <div class="greeting__main-focus">
@@ -35,7 +35,7 @@
           </div>
         </main>
       </div>
-      <div class="todo__container">
+      <div class="todo__container disappear">
         <form class="form form--todo">
           <input
             type="text"
@@ -55,5 +55,6 @@
     </div>
     <script src="src/assets/js/unsplash.js"></script>
     <script src="src/assets/js/greeting.js"></script>
+    <script src="src/assets/js/clock.js"></script>
   </body>
 </html>
