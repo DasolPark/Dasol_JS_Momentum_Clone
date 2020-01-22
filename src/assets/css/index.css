@@ -97,7 +97,7 @@ textarea {
   margin-bottom: 20px;
 }
 
-/* 두 번째 화면 */
+/* Disappears */
 .whats-your-name__container.disappear {
   display: none;
 }
@@ -106,9 +106,18 @@ textarea {
   display: none;
 }
 
+.main-focus__input-container.disappear {
+  display: none;
+}
+
+.main-focus__showing-container.disappear {
+  display: none;
+}
+
 .todo__container.disappear {
   display: none;
 }
+/* 두 번째 화면 */
 
 .greeting__container {
   width: 100%;
@@ -151,10 +160,41 @@ textarea {
   align-items: center;
   flex-direction: column;
 }
+.main-focus__input-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
 
 .question {
   font-size: 2rem;
   margin-bottom: 10px;
+}
+
+.main-focus__showing-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input--checkbox {
+  width: 20px;
+  height: 20px;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+.greeting__main-focus-text {
+  font-size: 2rem;
+  margin-right: 20px;
+}
+
+.greeting__main-focus-compliment {
+  font-size: 1.5rem;
 }
 
 /* 세 번째 화면 with To Do List */

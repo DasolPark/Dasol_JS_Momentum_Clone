@@ -9,6 +9,8 @@ const putName = document.querySelector('#js-name');
 if (localStorage.userName) {
   whatsYourCon.classList.add('disappear');
   greeting.classList.remove('disappear');
+
+  putName.textContent = localStorage.userName;
 } else {
   nameForm.addEventListener('submit', e => {
     e.preventDefault();

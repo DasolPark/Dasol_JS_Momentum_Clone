@@ -28,10 +28,34 @@
             <span class="sir">님</span>
           </div>
           <div class="greeting__main-focus">
-            <span class="question">오늘 가장 중요한 일이 뭐에요?</span>
-            <form class="form">
-              <input type="text" class="input" />
-            </form>
+            <div class="main-focus__input-container" id="js-question">
+              <span class="question">오늘 가장 중요한 일이 뭐에요?</span>
+              <form class="form" id="js-main-focus-form">
+                <input
+                  type="text"
+                  class="input input--main-focus"
+                  id="js-main-focus-input"
+                />
+              </form>
+            </div>
+            <div
+              class="main-focus__showing-container disappear"
+              id="js-focus-showing"
+            >
+              <input
+                type="checkbox"
+                class="input--checkbox"
+                id="js-checkbox-focus"
+              />
+              <div
+                class="greeting__main-focus-text"
+                id="js-main-focus-text"
+              ></div>
+              <div
+                class="greeting__main-focus-compliment"
+                id="js-compliment"
+              ></div>
+            </div>
           </div>
         </main>
       </div>
@@ -56,5 +80,6 @@
     <script src="src/assets/js/unsplash.js"></script>
     <script src="src/assets/js/greeting.js"></script>
     <script src="src/assets/js/clock.js"></script>
+    <script src="src/assets/js/mainFocus.js"></script>
   </body>
 </html>
