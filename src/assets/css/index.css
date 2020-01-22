@@ -237,10 +237,18 @@ textarea {
   }
 }
 
-.button--del {
+.button--del,
+.button--check {
   font-size: 1rem;
   margin-right: 10px;
-  padding: 5px 10px;
+  padding: 4px 4px;
+  opacity: 0.7;
+}
+
+.button--del {
+  margin-right: 2px;
+  padding: 4px 0px;
+  color: white;
 }
 
 li {

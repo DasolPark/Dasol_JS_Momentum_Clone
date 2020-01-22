@@ -32,10 +32,14 @@ function loadTodoList() {
 }
 
 function addTodoList() {
-  const btn = document.createElement('button');
-  btn.textContent = '✔';
-  btn.classList.add('button');
-  btn.classList.add('button--del');
+  const checkBtn = document.createElement('button');
+  checkBtn.textContent = '❌';
+  checkBtn.classList.add('button');
+  checkBtn.classList.add('button--del');
+  const delBtn = document.createElement('button');
+  delBtn.textContent = '✔';
+  delBtn.classList.add('button');
+  delBtn.classList.add('button--check');
 
   const li = document.createElement('li');
   li.classList.add('todo-list');
@@ -45,7 +49,8 @@ function addTodoList() {
   span.textContent = todoInput.value;
   storeTodolist(todoInput.value, ids++);
 
-  li.appendChild(btn);
+  li.appendChild(checkBtn);
+  li.appendChild(delBtn);
   li.appendChild(span);
   todoLists.appendChild(li);
 
@@ -57,10 +62,14 @@ function showTodoLists() {
   const loadTodoList = JSON.parse(localStorage.getItem(TODO_LS));
   idsSort(loadTodoList);
   loadTodoList.forEach(list => {
-    const btn = document.createElement('button');
-    btn.textContent = '✔';
-    btn.classList.add('button');
-    btn.classList.add('button--del');
+    const checkBtn = document.createElement('button');
+    checkBtn.textContent = '❌';
+    checkBtn.classList.add('button');
+    checkBtn.classList.add('button--del');
+    const delBtn = document.createElement('button');
+    delBtn.textContent = '✔';
+    delBtn.classList.add('button');
+    delBtn.classList.add('button--check');
 
     const li = document.createElement('li');
     li.classList.add('todo-list');
@@ -69,7 +78,8 @@ function showTodoLists() {
     span.classList.add('todo-list-text');
     span.textContent = list.text;
 
-    li.appendChild(btn);
+    li.appendChild(checkBtn);
+    li.appendChild(delBtn);
     li.appendChild(span);
     todoLists.appendChild(li);
 
