@@ -1,10 +1,11 @@
-const whatsYourCon = document.querySelector('#js-whats-your-container');
+const whatsYourContainer = document.querySelector('#js-whats-your-container');
 const nameForm = document.querySelector('#js-name-form');
 const nameInput = document.querySelector('#js-name-input');
 let userName = '';
 
-const greeting = document.querySelector('#js-greeting-container');
-const putName = document.querySelector('#js-name');
+const greetContainer = document.querySelector('#js-greeting-container');
+const greetText = document.querySelector('#js-greet-text');
+const nameText = document.querySelector('#js-name');
 
 function greetingMessage(hour) {
   if (hour > 5 && hour < 11) {
@@ -20,21 +21,23 @@ function greetingMessage(hour) {
   }
 }
 
-if (localStorage.userName) {
-  whatsYourCon.classList.add('disappear');
-  greeting.classList.remove('disappear');
+function whatsyourGreetContainerToggle() {
+  whatsYourContainer.classList.add('disappear');
+  greetContainer.classList.remove('disappear');
+}
 
-  putName.textContent = localStorage.userName;
+if (localStorage.userName) {
+  // has user name
+  whatsyourGreetContainerToggle();
+  nameText.textContent = localStorage.userName;
 } else {
+  // don't have user name
   nameForm.addEventListener('submit', e => {
     e.preventDefault();
 
     userName = nameInput.value;
     localStorage.setItem('userName', userName);
-
-    whatsYourCon.classList.add('disappear');
-    greeting.classList.remove('disappear');
-
-    putName.textContent = localStorage.userName;
+    whatsyourGreetContainerToggle();
+    nameText.textContent = localStorage.userName;
   });
 }

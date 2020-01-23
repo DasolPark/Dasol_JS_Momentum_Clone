@@ -1,5 +1,4 @@
 const currentTime = document.querySelector('#js-current-time');
-const greetText = document.querySelector('#js-greet-text');
 
 function getCurrentTime() {
   const date = new Date();
@@ -10,7 +9,7 @@ function getCurrentTime() {
     minute < 10 ? `0${minute}` : minute
   }`;
 
-  greetingMessage(hour); // greeting.js
+  greetingMessage(hour); // greeting.js(for different greet message)
 }
 
 if (currentTime) {
