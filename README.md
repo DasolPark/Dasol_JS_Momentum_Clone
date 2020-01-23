@@ -7,7 +7,7 @@
 
 ### HTML&CSS
 
-- Animation(Disappear, Show up, etc.)
+- [x] Animation(Disappear, Show up, etc.)
 - [x] What's your name?
 - [x] Greeting
 - [x] Today's main focus
