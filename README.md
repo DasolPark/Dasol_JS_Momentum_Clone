@@ -1,3 +1,8 @@
+# Momentum Clone
+
+- URL: 👉https://dasolpark.github.io/Dasol_JS_Momentum_Clone/
+- HTML5, CSS3, JavaScript
+
 # Gloals
 
 ### HTML&CSS
@@ -8,7 +13,7 @@
 - [x] Today's main focus
 - [x] To Do(open, close, add list)
 
-### JS
+### JavaScript
 
 - [x] What's your name? (Store Local Storage)
 - [x] Current Time(Hour, Minute)
