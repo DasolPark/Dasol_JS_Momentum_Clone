@@ -1,24 +1,27 @@
-const jsTodoContainer = document.querySelector('#js-todo-container');
-const todoBtn = document.querySelector('#js-btn');
+const todoBtn = document.querySelector('#js-btn'); // in greeting block
+
+const todoContainer = document.querySelector('#js-todo-container');
 const todoForm = document.querySelector('#js-todo-form');
 const todoInput = document.querySelector('#js-todo-input');
 const todoLists = document.querySelector('#js-todo-ul');
 
 const TODO_LS = 'ToDo';
-let ids = 0;
+let continueId = 0;
+let initialId = 0;
 
-function idsSort(loadTodoList) {
+function idSort(loadTodoList) {
   const lists = loadTodoList;
 
   lists.map((list, idx) => (list.id = idx));
-  ids = lists.length;
+  continueId = lists.length;
   localStorage.setItem(TODO_LS, JSON.stringify(lists));
 }
 
-function storeTodolist(text, id) {
+function storeTodoList(text, id) {
   let todoObj = [];
-  if (loadTodoList() !== null) {
-    todoObj = JSON.parse(loadTodoList());
+  const loadTodoList = JSON.parse(localStorage.getItem(TODO_LS));
+  if (loadTodoList !== null) {
+    todoObj = loadTodoList;
     todoObj.push({ text: text, id: id });
   } else {
     todoObj.push({ text: text, id: id });
@@ -27,11 +30,7 @@ function storeTodolist(text, id) {
   localStorage.setItem(TODO_LS, JSON.stringify(todoObj));
 }
 
-function loadTodoList() {
-  return localStorage.getItem(TODO_LS);
-}
-
-function addTodoList() {
+function addTodoList(list, hasLists = false) {
   const delBtn = document.createElement('button');
   delBtn.textContent = '⛔';
   delBtn.classList.add('button--del');
@@ -42,12 +41,19 @@ function addTodoList() {
 
   const li = document.createElement('li');
   li.classList.add('todo-list');
-  li.id = `js-li${ids}`;
 
   const span = document.createElement('span');
   span.classList.add('todo-list-text');
-  span.textContent = todoInput.value;
-  storeTodolist(todoInput.value, ids);
+
+  if (!hasLists) {
+    span.textContent = todoInput.value;
+    storeTodoList(todoInput.value, continueId);
+    li.id = `js-li${continueId}`;
+    continueId++;
+  } else {
+    span.textContent = list.text;
+    li.id = `js-li${initialId++}`;
+  }
 
   delBtn.addEventListener('click', () => {
     li.parentNode.removeChild(li);
@@ -58,19 +64,19 @@ function addTodoList() {
     localStorage.setItem(TODO_LS, JSON.stringify(result));
   });
 
-  function onTodoUncheckClikc() {
+  function onTodoUncheckClickToggle() {
     span.style = 'text-decoration: none;';
-    checkBtn.addEventListener('click', onTodoCheckClick);
-    checkBtn.removeEventListener('click', onTodoUncheckClikc);
+    checkBtn.addEventListener('click', onTodoCheckClickToggle);
+    checkBtn.removeEventListener('click', onTodoUncheckClickToggle);
   }
 
-  function onTodoCheckClick() {
+  function onTodoCheckClickToggle() {
     span.style = 'text-decoration: line-through;';
-    checkBtn.removeEventListener('click', onTodoCheckClick);
-    checkBtn.addEventListener('click', onTodoUncheckClikc);
+    checkBtn.removeEventListener('click', onTodoCheckClickToggle);
+    checkBtn.addEventListener('click', onTodoUncheckClickToggle);
   }
 
-  checkBtn.addEventListener('click', onTodoCheckClick);
+  checkBtn.addEventListener('click', onTodoCheckClickToggle);
 
   li.appendChild(delBtn);
   li.appendChild(checkBtn);
@@ -79,81 +85,40 @@ function addTodoList() {
 
   todoInput.value = '';
   todoInput.focus();
-  ids++;
 }
+
+// Initial function(check has list)
 
 function showTodoLists() {
   const loadTodoList = JSON.parse(localStorage.getItem(TODO_LS));
   if (loadTodoList !== null) {
-    idsSort(loadTodoList);
-    let ids = 0;
+    idSort(loadTodoList);
+
+    let hasLists = true;
 
     loadTodoList.forEach(list => {
-      const delBtn = document.createElement('button');
-      delBtn.textContent = '⛔';
-      delBtn.classList.add('button--del');
-
-      const checkBtn = document.createElement('button');
-      checkBtn.textContent = '👍';
-      checkBtn.classList.add('button--check');
-
-      const li = document.createElement('li');
-      li.classList.add('todo-list');
-      li.id = `js-li${ids++}`;
-
-      const span = document.createElement('span');
-      span.classList.add('todo-list-text');
-      span.textContent = list.text;
-
-      delBtn.addEventListener('click', () => {
-        li.parentNode.removeChild(li);
-        const loadTodoList = JSON.parse(localStorage.getItem(TODO_LS));
-        const result = loadTodoList.filter(
-          list => list.id !== parseInt(li.id.replace(/[a-z|-]/gi, ''))
-        );
-        localStorage.setItem(TODO_LS, JSON.stringify(result));
-      });
-
-      // const doneIcon = document.createAttribute('span');
-      // doneIcon.textContent = '💪';
-
-      function onTodoUncheckClikc() {
-        span.style = 'text-decoration: none;';
-        checkBtn.addEventListener('click', onTodoCheckClick);
-        checkBtn.removeEventListener('click', onTodoUncheckClikc);
-      }
-
-      function onTodoCheckClick() {
-        span.style = 'text-decoration: line-through;';
-        checkBtn.removeEventListener('click', onTodoCheckClick);
-        checkBtn.addEventListener('click', onTodoUncheckClikc);
-      }
-
-      checkBtn.addEventListener('click', onTodoCheckClick);
-
-      li.appendChild(delBtn);
-      li.appendChild(checkBtn);
-      li.appendChild(span);
-      todoLists.appendChild(li);
-
-      todoInput.focus();
+      addTodoList(list, hasLists);
     });
   }
 }
+
+// Add To Do List
 
 const onFormSubmit = e => {
   e.preventDefault();
   addTodoList();
 };
 
+// To Do Button Toggle
+
 const onBtnCloseClickToggle = () => {
-  jsTodoContainer.classList.add('disappear');
+  todoContainer.classList.add('disappear');
   todoBtn.addEventListener('click', onBtnOpenClickToggle);
   todoBtn.removeEventListener('click', onBtnCloseClickToggle);
 };
 
 const onBtnOpenClickToggle = () => {
-  jsTodoContainer.classList.remove('disappear');
+  todoContainer.classList.remove('disappear');
   todoBtn.removeEventListener('click', onBtnOpenClickToggle);
   todoBtn.addEventListener('click', onBtnCloseClickToggle);
 };
@@ -161,6 +126,8 @@ const onBtnOpenClickToggle = () => {
 todoBtn.addEventListener('click', onBtnOpenClickToggle);
 todoForm.addEventListener('submit', onFormSubmit);
 
-if (jsTodoContainer) {
+// Initial
+
+if (todoContainer) {
   showTodoLists();
 }

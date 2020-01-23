@@ -22,4 +22,4 @@
 - [x] To Do List (Store Local Storage, Complete, Delete)
 - [x] Weather API with open weather map
 - [x] Background Image API with unsplash
-- [ ] Code Refactoring
+- [x] Code Refactoring
