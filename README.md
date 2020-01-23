@@ -6,7 +6,7 @@
 - [x] What's your name?
 - [x] Greeting
 - [x] Today's main focus
-- [ ] To Do(open, close, add list)
+- [x] To Do(open, close, add list)
 
 ### JS
 
@@ -14,7 +14,7 @@
 - [x] Current Time(Hour, Minute)
 - [x] Today's main focus(Store, Load, Complete and Delete it the next day)
 - [x] Greetings(good morning, afternoon, evening)
-- [ ] To Do List (Store Local Storage, Complete, Delete)
+- [x] To Do List (Store Local Storage, Complete, Delete)
 - [x] Weather API with open weather map
 - [x] Background Image API with unsplash
 - [ ] Code Refactoring

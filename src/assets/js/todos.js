@@ -58,6 +58,20 @@ function addTodoList() {
     localStorage.setItem(TODO_LS, JSON.stringify(result));
   });
 
+  function onTodoUncheckClikc() {
+    span.style = 'text-decoration: none;';
+    checkBtn.addEventListener('click', onTodoCheckClick);
+    checkBtn.removeEventListener('click', onTodoUncheckClikc);
+  }
+
+  function onTodoCheckClick() {
+    span.style = 'text-decoration: line-through;';
+    checkBtn.removeEventListener('click', onTodoCheckClick);
+    checkBtn.addEventListener('click', onTodoUncheckClikc);
+  }
+
+  checkBtn.addEventListener('click', onTodoCheckClick);
+
   li.appendChild(delBtn);
   li.appendChild(checkBtn);
   li.appendChild(span);
@@ -99,6 +113,23 @@ function showTodoLists() {
         );
         localStorage.setItem(TODO_LS, JSON.stringify(result));
       });
+
+      // const doneIcon = document.createAttribute('span');
+      // doneIcon.textContent = '💪';
+
+      function onTodoUncheckClikc() {
+        span.style = 'text-decoration: none;';
+        checkBtn.addEventListener('click', onTodoCheckClick);
+        checkBtn.removeEventListener('click', onTodoUncheckClikc);
+      }
+
+      function onTodoCheckClick() {
+        span.style = 'text-decoration: line-through;';
+        checkBtn.removeEventListener('click', onTodoCheckClick);
+        checkBtn.addEventListener('click', onTodoUncheckClikc);
+      }
+
+      checkBtn.addEventListener('click', onTodoCheckClick);
 
       li.appendChild(delBtn);
       li.appendChild(checkBtn);
