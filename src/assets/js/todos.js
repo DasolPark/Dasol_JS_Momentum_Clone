@@ -32,59 +32,82 @@ function loadTodoList() {
 }
 
 function addTodoList() {
-  const checkBtn = document.createElement('button');
-  checkBtn.textContent = '❌';
-  checkBtn.classList.add('button');
-  checkBtn.classList.add('button--del');
   const delBtn = document.createElement('button');
-  delBtn.textContent = '✔';
-  delBtn.classList.add('button');
-  delBtn.classList.add('button--check');
+  delBtn.textContent = '⛔';
+  delBtn.classList.add('button--del');
+
+  const checkBtn = document.createElement('button');
+  checkBtn.textContent = '👍';
+  checkBtn.classList.add('button--check');
 
   const li = document.createElement('li');
   li.classList.add('todo-list');
+  li.id = `js-li${ids}`;
 
   const span = document.createElement('span');
   span.classList.add('todo-list-text');
   span.textContent = todoInput.value;
-  storeTodolist(todoInput.value, ids++);
+  storeTodolist(todoInput.value, ids);
 
-  li.appendChild(checkBtn);
+  delBtn.addEventListener('click', () => {
+    li.parentNode.removeChild(li);
+    const loadTodoList = JSON.parse(localStorage.getItem(TODO_LS));
+    const result = loadTodoList.filter(
+      list => list.id !== parseInt(li.id.replace(/[a-z|-]/gi, ''))
+    );
+    localStorage.setItem(TODO_LS, JSON.stringify(result));
+  });
+
   li.appendChild(delBtn);
+  li.appendChild(checkBtn);
   li.appendChild(span);
   todoLists.appendChild(li);
 
   todoInput.value = '';
   todoInput.focus();
+  ids++;
 }
 
 function showTodoLists() {
   const loadTodoList = JSON.parse(localStorage.getItem(TODO_LS));
-  idsSort(loadTodoList);
-  loadTodoList.forEach(list => {
-    const checkBtn = document.createElement('button');
-    checkBtn.textContent = '❌';
-    checkBtn.classList.add('button');
-    checkBtn.classList.add('button--del');
-    const delBtn = document.createElement('button');
-    delBtn.textContent = '✔';
-    delBtn.classList.add('button');
-    delBtn.classList.add('button--check');
+  if (loadTodoList !== null) {
+    idsSort(loadTodoList);
+    let ids = 0;
 
-    const li = document.createElement('li');
-    li.classList.add('todo-list');
+    loadTodoList.forEach(list => {
+      const delBtn = document.createElement('button');
+      delBtn.textContent = '⛔';
+      delBtn.classList.add('button--del');
 
-    const span = document.createElement('span');
-    span.classList.add('todo-list-text');
-    span.textContent = list.text;
+      const checkBtn = document.createElement('button');
+      checkBtn.textContent = '👍';
+      checkBtn.classList.add('button--check');
 
-    li.appendChild(checkBtn);
-    li.appendChild(delBtn);
-    li.appendChild(span);
-    todoLists.appendChild(li);
+      const li = document.createElement('li');
+      li.classList.add('todo-list');
+      li.id = `js-li${ids++}`;
 
-    todoInput.focus();
-  });
+      const span = document.createElement('span');
+      span.classList.add('todo-list-text');
+      span.textContent = list.text;
+
+      delBtn.addEventListener('click', () => {
+        li.parentNode.removeChild(li);
+        const loadTodoList = JSON.parse(localStorage.getItem(TODO_LS));
+        const result = loadTodoList.filter(
+          list => list.id !== parseInt(li.id.replace(/[a-z|-]/gi, ''))
+        );
+        localStorage.setItem(TODO_LS, JSON.stringify(result));
+      });
+
+      li.appendChild(delBtn);
+      li.appendChild(checkBtn);
+      li.appendChild(span);
+      todoLists.appendChild(li);
+
+      todoInput.focus();
+    });
+  }
 }
 
 const onFormSubmit = e => {

@@ -38,7 +38,7 @@ function onFocusFormSubmit(e) {
   loadFocus();
 }
 
-function onCheckboxClick() {
+function onCheckboxClickToggle() {
   if (!checkBoxFocus.checked) {
     mainFocusText.style = 'text-decoration: none';
     complimentText.textContent = '';
@@ -48,7 +48,7 @@ function onCheckboxClick() {
   }
 }
 
-checkBoxFocus.addEventListener('click', onCheckboxClick);
+checkBoxFocus.addEventListener('click', onCheckboxClickToggle);
 
 if (!localStorage.getItem(FOCUS_LS)) {
   mainFocusForm.addEventListener('submit', onFocusFormSubmit);
