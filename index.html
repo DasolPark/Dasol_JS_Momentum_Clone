@@ -14,7 +14,12 @@
         <main class="whats-your-name">
           <span class="whats-your-name__text">당신의 이름을 알고 싶어요!</span>
           <form class="form" id="js-name-form">
-            <input type="text" class="input" id="js-name-input" />
+            <input
+              type="text"
+              class="input"
+              id="js-name-input"
+              autocomplete="off"
+            />
           </form>
         </main>
       </div>
@@ -36,6 +41,7 @@
                   type="text"
                   class="input input--main-focus"
                   id="js-main-focus-input"
+                  autocomplete="off"
                 />
               </form>
             </div>
@@ -67,6 +73,7 @@
             class="input--todo"
             placeholder="해야할 일을 적어주세요!"
             id="js-todo-input"
+            autocomplete="off"
           />
         </form>
         <ul class="todo-lists" id="js-todo-ul"></ul>
